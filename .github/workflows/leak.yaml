@@ -14,19 +14,32 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Run Gitleaks to Detect Secrets
-        uses: zricethezav/gitleaks-action@v1.7.0
+      - name: Checkout
+        uses: actions/checkout@v3
         with:
-          config: ''
-          verbose: true
+          fetch-depth: 0
 
-      - name: Report Success
-        if: success()
-        run: echo "No secrets were found!"
+      - name: Run Gitleaks
+        id: gitleaks
+        uses: DariuszPorowski/github-action-gitleaks@v2
+        with:
+          report_format: sarif
+          fail: false
 
-      - name: Fail on Secrets Detected
-        if: failure()
-        run: echo "Secrets were detected in the code. Please review the findings."
+      # (optional) It's just to see outputs from the Action
+      # please note, the OUTPUT has to be passed via env vars!
+      - name: Get the output from the gitleaks step
+        run: |
+          echo "exitcode: ${{ steps.gitleaks.outputs.exitcode }}"
+          echo "result: ${{ steps.gitleaks.outputs.result }}"
+          echo "command: ${{ steps.gitleaks.outputs.command }}"
+          echo "report: ${{ steps.gitleaks.outputs.report }}"
+          echo "output: ${GITLEAKS_OUTPUT}"
+        env:
+          GITLEAKS_OUTPUT: ${{ steps.gitleaks.outputs.output }}
+
+      - name: Upload Gitleaks SARIF report to code scanning service
+        if: ${{ steps.gitleaks.outputs.exitcode == 1 }}
+        uses: github/codeql-action/upload-sarif@v2
+        with:
+          sarif_file: ${{ steps.gitleaks.outputs.report }}
