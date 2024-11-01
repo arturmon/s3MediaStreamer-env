@@ -1,0 +1,14 @@
+apiVersion: v1
+entries:
+  s3media:
+  - apiVersion: v2
+    appVersion: 0.0.1
+    created: "2024-11-01T17:48:24.117492969Z"
+    description: A Helm S3 Media Streamer chart for Kubernetes
+    digest: 6ceab6becf188158c70584af3c12169129837555823929346b06d6e6c2d11b9d
+    name: s3media
+    type: application
+    urls:
+    - https://github.com/arturmon/s3MediaStreamer-env/releases/download/s3media-0.0.1/s3media-0.0.1.tgz
+    version: 0.0.1
+generated: "2024-11-01T17:48:24.117502166Z"
