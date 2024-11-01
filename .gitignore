@@ -1,0 +1,35 @@
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+app/app-media
+
+# Test binary, built with `go test -c`
+*.test
+
+# Output of the go coverage tool, specifically when used with LiteIDE
+*.out
+
+# Dependency directories (remove the comment below to include it)
+# vendor/
+
+# idea confDB
+.idea
+# VSCode
+.vscode
+
+# http
+*.cookies
+*.html
+*.http
+
+#ignore depences charts
+chart/charts
+chart/Chart.lock
+
+# Ignore DevSpace cache and log folder
+.devspace/
+
+http-client.private.env.json
