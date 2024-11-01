@@ -1,0 +1,32 @@
+name: Detect Secrets
+
+on:
+  push:
+    branches:
+      - '**'
+  pull_request:
+    branches:
+      - '**'
+
+jobs:
+  scan_secrets:
+    name: Scan for Secrets
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Run Gitleaks to Detect Secrets
+        uses: zricethezav/gitleaks-action@v1.7.0
+        with:
+          config: ''
+          verbose: true
+
+      - name: Report Success
+        if: success()
+        run: echo "No secrets were found!"
+
+      - name: Fail on Secrets Detected
+        if: failure()
+        run: echo "Secrets were detected in the code. Please review the findings."

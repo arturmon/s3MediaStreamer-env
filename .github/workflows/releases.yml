@@ -1,6 +1,11 @@
 name: Release Charts
 
 on:
+  workflow_run:
+    workflows:
+      - Detect Secrets
+    types:
+      - completed
   push:
     branches:
       - main
