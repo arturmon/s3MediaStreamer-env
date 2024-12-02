@@ -11,10 +11,6 @@ image:
   registry: arturmon/s3stream
   pullPolicy: Always
   tag: latest
-  imagePullSecrets:
-    name: devspace-pull-secrets
-    create: false
-    server: harbor.localhost
     # username: xxx
     # password: xxx
 podAnnotations: {}

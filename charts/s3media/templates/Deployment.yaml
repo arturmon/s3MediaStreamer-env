@@ -96,13 +96,6 @@ spec:
             - name: consul-data
               mountPath: /consul/data
         {{- end }}
-      imagePullSecrets:
-        {{- if .Values.image.imagePullSecrets.create }}
-        - name: {{ include "fullname" $ }}-img
-        {{- else if .Values.image.imagePullSecrets.name }}
-        - name: {{ .Values.image.imagePullSecrets.name }}
-        {{- end }}
-        - name: {{ include "fullname" $ }}-img
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
