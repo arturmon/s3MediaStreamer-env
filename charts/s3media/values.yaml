@@ -67,7 +67,7 @@ env:
   STORAGE_HOST: postgresql.database.svc.cluster.local
   SESSION_POSTGRESQL_HOST: postgresql.database.svc.cluster.local
   S3_ENDPOINT: minio.database.svc.cluster.local:9000
-  MQ_BROKER: rabbitmq.message.svc.cluster.local
+  MQ_BROKER: rabbitmq.bus.svc.cluster.local
   #CONSUL_URL: consul-consul-server.observability.svc.cluster.local:8500
   # Use localhost only set helm values consulSidecar.enabled: true
   CONSUL_URL: localhost:8500
