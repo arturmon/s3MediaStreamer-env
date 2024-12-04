@@ -4,6 +4,9 @@
 
 replicaCount: 3
 
+debug:
+  enabled: true
+
 nameOverride: ""
 fullnameOverride: ""
 

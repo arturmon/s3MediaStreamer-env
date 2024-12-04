@@ -26,6 +26,11 @@ spec:
       port: 8302
       protocol: UDP
     {{- end }}
+    {{- if .Values.debug.enabled }}
+    - name: debug
+      port: 2345
+      protocol: TCP
+    {{- end }}
   selector:
     app.kubernetes.io/name: {{ include "name" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}
